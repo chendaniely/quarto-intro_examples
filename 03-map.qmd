@@ -1,0 +1,98 @@
+---
+jupyter: python3
+editor_options: 
+  chunk_output_type: console
+---
+
+```{python}
+#reticulate::use_virtualenv("~/git/rstudio/quarto-intro_examples/venv/")
+import pathlib as pl
+
+import folium
+from folium.plugins import MarkerCluster
+import numpy as np
+import pandas as pd
+
+info = pd.read_csv("data/station_info.csv")
+availability = pd.read_csv("data/availability.csv")
+
+dat = availability.merge(info, left_on='station_id', right_on='station_id')
+dat.head()
+
+if not pl.Path("data/bike_counts_by_time_location.csv").exists():
+  dat.to_csv('data/bike_counts_by_time_location.csv', index=False)
+```
+
+```{python}
+area_scale_factor = 2
+minimum_radius = 3
+
+dat['size'] = (np.sqrt(dat['num_bikes_available']) * area_scale_factor) + minimum_radius
+dat['color'] = dat['num_bikes_available'].apply(lambda x: 'green' if x > 0 else 'red')
+```
+
+```{python}
+# map center
+dc_coors = [38.89511, -77.03637]
+
+# map
+dc_map = folium.Map(location=dc_coors, zoom_start = 13)
+```
+
+```{python}
+for _, bike_station in dat.iterrows():
+    folium.CircleMarker(
+        location=[bike_station["lat"], bike_station["lon"]],
+        radius=bike_station["size"],
+        color=bike_station["color"],
+        stroke=False,
+        fill=True,
+        fill_opacity=0.6,
+        opacity=1,
+        popup=f"{bike_station['num_bikes_available']} bikes availiable, radius: {bike_station['size']}",
+        tooltip=f"{bike_station['num_bikes_available']} bikes availiable",
+    ).add_to(dc_map)
+
+# map displays on render
+dc_map
+```
+
+Make the map without using a `for` loop
+
+```{python}
+dc_map2 = folium.Map(location=dc_coors, zoom_start = 13)
+```
+
+```{python}
+from numpy import vectorize
+
+@vectorize
+def plot_on_map(fmap, lat, lon, radius, color, num_bikes):
+    folium.CircleMarker(
+        location=[lat, lon],
+        radius=radius,
+        color=color,
+        stroke=False,
+        fill=True,
+        fill_opacity=0.6,
+        opacity=1,
+        popup=f"{num_bikes} bikes availiable, radius: {radius}",
+        tooltip=f"{radius} bikes availiable",
+    ).add_to(fmap)
+    
+    return fmap
+```
+
+
+```{python}
+plot_on_map(
+    fmap=dc_map2,
+    lat=dat["lat"],
+    lon=dat["lon"],
+    radius=dat["size"],
+    color=dat["color"],
+    num_bikes=dat["num_bikes_available"]
+)
+
+dc_map2
+```

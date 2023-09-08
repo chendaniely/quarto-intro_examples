@@ -40,3 +40,7 @@ The bike data only represents information collected when the `Rscript 01-get_dat
 ### Quarto document examples
 
 The example documents for quarto will all begin with the `example-` file prefix.
+
+#### Example 01: Bare Quarto document with code chunks
+
+An quarto document that only utilizes `{python}` engine code chunks.

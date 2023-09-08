@@ -4,10 +4,9 @@ jupyter: python3
 
 ```{python}
 #reticulate::use_virtualenv("~/git/rstudio/quarto-intro_examples/venv/")
-import pathlib as pl
+from pathlib import Path
 
 import folium
-from folium.plugins import MarkerCluster
 import numpy as np
 import pandas as pd
 
@@ -17,7 +16,7 @@ availability = pd.read_csv("data/availability.csv")
 dat = availability.merge(info, left_on='station_id', right_on='station_id')
 dat.head()
 
-if not pl.Path("data/bike_counts_by_time_location.csv").exists():
+if not Path("data/bike_counts_by_time_location.csv").exists():
   dat.to_csv('data/bike_counts_by_time_location.csv', index=False)
 ```
 

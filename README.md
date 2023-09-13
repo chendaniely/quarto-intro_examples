@@ -59,3 +59,7 @@ A quarto document that only utilizes `{python}` engine code chunks.
 #### Example 02: Headings and markdown prose text
 
 A quarto document that utilizes headings and markdown prose text.
+
+#### Example 03: Tweaking output with YAML settings
+
+A quarto document that utilizes YAML settings to tweak the output.

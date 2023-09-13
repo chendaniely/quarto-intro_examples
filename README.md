@@ -23,6 +23,13 @@ pip install pandas jupyter folium plotnine
 
 ## How to navigate this repository
 
+If you are using the `venv` virtual environment,
+make sure to activate it before running any of the scripts.
+
+```shell
+source venv/bin/activate
+```
+
 ### Prep data
 
 There are 2 scripts that will
@@ -47,4 +54,8 @@ The example documents for quarto will all begin with the `example-` file prefix.
 
 #### Example 01: Bare Quarto document with code chunks
 
-An quarto document that only utilizes `{python}` engine code chunks.
+A quarto document that only utilizes `{python}` engine code chunks.
+
+#### Example 02: Headings and markdown prose text
+
+A quarto document that utilizes headings and markdown prose text.

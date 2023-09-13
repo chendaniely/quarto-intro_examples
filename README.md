@@ -4,6 +4,10 @@ A set of Quarto document examples going from only using code chunks to a polishe
 
 ## Setup
 
+### Python
+
+Using Python 3.11.5
+
 ### Virtual environment setup
 
 ```shell
@@ -32,7 +36,7 @@ python 02-process_data_example.y
 ```
 
 The final data set that will be used in the Quarto report examples will join
-bike share station location along with the number of avaliable bikes at that particular location
+bike share station location along with the number of available bikes at that particular location
 for a particular date + time.
 
 The bike data only represents information collected when the `Rscript 01-get_data.R` was run to pull the data.

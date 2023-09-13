@@ -46,8 +46,8 @@ for _, bike_station in dat.iterrows():
         fill=True,
         fill_opacity=0.6,
         opacity=1,
-        popup=f"{bike_station['num_bikes_available']} bikes availiable, radius: {bike_station['size']}",
-        tooltip=f"{bike_station['num_bikes_available']} bikes availiable",
+        popup=f"{bike_station['num_bikes_available']} bikes available, radius: {bike_station['size']}",
+        tooltip=f"{bike_station['num_bikes_available']} bikes available",
     ).add_to(dc_map)
 
 # map displays on render

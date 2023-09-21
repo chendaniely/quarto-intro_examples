@@ -1,7 +1,7 @@
 .quarto-title-block .quarto-title-banner {
   background-image: url(logo.png);
   background-size: 300px;
-  background-position: left;
+  background-position: right;
   background-repeat: no-repeat;
   padding-left: 10px;
   background-origin: content-box;
